@@ -1,1 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE EAGLE⁰⁹ - APK Download</title>
 
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top,#172554 0%,#080b16 42%,#03040a 100%);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    padding:25px 14px;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.logo{
+    width:76px;
+    height:76px;
+    margin:auto;
+    border-radius:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 0 35px rgba(59,130,246,.35);
+}
+
+.title{
+    margin-top:13px;
+    font-size:29px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.subtitle{
+    margin-top:6px;
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.progress-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;
+    padding:13px;
+    margin-bottom:15px;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#bfc5d2;
+    margin-bottom:8px;
+}
+
+.progress{
+    height:7px;
+    background:#202535;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+    transition:.5s;
+}
+
+.card{
+    background:rgba(17,24,39,.82);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
+    backdrop-filter:blur(12px);
+    animation:fade .4s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.task-number{
+    color:#60a5fa;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.task-title{
+    font-size:20px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+.task-desc{
+    color:#9ca3af;
+    font-size:13px;
+    margin:7px 0 16px;
+    line-height:1.5;
+}
+
+button{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:14px;
+    font-size:15px;
+    font-weight:800;
+    color:white;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+.open-btn{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+}
+
+.verify-btn{
+    margin-top:10px;
+    background:linear-gradient(135deg,#059669,#10b981);
+    display:none;
+}
+
+.timer{
+    text-align:center;
+    color:#93c5fd;
+    font-size:14px;
+    font-weight:bold;
+    margin-top:13px;
+    display:none;
+}
+
+.done{
+    display:none;
+    text-align:center;
+    color:#34d399;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.final{
+    display:none;
+    animation:fade .5s ease;
+}
+
+.download-btn{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    margin-bottom:10px;
+}
+
+.key-btn{
+    background:linear-gradient(135deg,#f59e0b,#ef4444);
+}
+
+.key-box{
+    display:none;
+    margin-top:15px;
+    padding:17px;
+    border-radius:15px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    text-align:center;
+}
+
+.key-label{
+    color:#9ca3af;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.key{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+    word-break:break-all;
+    color:#fbbf24;
+}
+
+.valid{
+    margin-top:7px;
+    color:#9ca3af;
+    font-size:12px;
+}
+
+.copy-btn{
+    margin-top:12px;
+    background:#374151;
+}
+
+.copied{
+    color:#34d399;
+    font-size:12px;
+    margin-top:8px;
+    display:none;
+}
+
+.footer{
+    text-align:center;
+    color:#6b7280;
+    font-size:11px;
+    margin-top:20px;
+    padding-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="logo">🦅</div>
+
+        <div class="title">
+            THE EAGLE⁰⁹
+        </div>
+
+        <div class="subtitle">
+            Complete the tasks to unlock your download
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+    <div class="progress-box">
+
+        <div class="progress-text">
+            <span>UNLOCK PROGRESS</span>
+            <span id="progressText">0 / 3</span>
+        </div>
+
+        <div class="progress">
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= TASK 1 ================= -->
+
+    <div class="card" id="task1">
+
+        <div class="task-number">
+            TASK 01
+        </div>
+
+        <div class="task-title">
+            Subscribe on YouTube
+        </div>
+
+        <div class="task-desc">
+            Subscribe to THE EAGLE⁰⁹ on YouTube,
+            then return here and verify your task.
+        </div>
+
+        <button
+            class="open-btn"
+            id="ytOpen"
+            onclick="openTask(1)">
+            ▶ SUBSCRIBE ON YOUTUBE
+        </button>
+
+        <button
+            class="verify-btn"
+            id="ytVerify"
+            onclick="verifyTask(1)">
+            ✓ I'VE SUBSCRIBED
+        </button>
+
+        <div
+            class="timer"
+            id="timer1">
+            Please wait 10 seconds...
+        </div>
+
+        <div
+            class="done"
+            id="done1">
+            ✓ YouTube task completed
+        </div>
+
+    </div>
+
+
+    <!-- ================= TASK 2 ================= -->
+
+    <div
+        class="card"
+        id="task2"
+        style="display:none;">
+
+        <div class="task-number">
+            TASK 02
+        </div>
+
+        <div class="task-title">
+            Join Telegram
+        </div>
+
+        <div class="task-desc">
+            Join our Telegram channel,
+            then return here and verify your task.
+        </div>
+
+        <button
+            class="open-btn"
+            id="tgOpen"
+            onclick="openTask(2)">
+            ✈ JOIN TELEGRAM
+        </button>
+
+        <button
+            class="verify-btn"
+            id="tgVerify"
+            onclick="verifyTask(2)">
+            ✓ I'VE JOINED
+        </button>
+
+        <div
+            class="timer"
+            id="timer2">
+            Please wait 10 seconds...
+        </div>
+
+        <div
+            class="done"
+            id="done2">
+            ✓ Telegram task completed
+        </div>
+
+    </div>
+
+
+    <!-- ================= TASK 3 ================= -->
+
+    <div
+        class="card"
+        id="task3"
+        style="display:none;">
+
+        <div class="task-number">
+            TASK 03
+        </div>
+
+        <div class="task-title">
+            Follow on Instagram
+        </div>
+
+        <div class="task-desc">
+            Follow the Instagram profile,
+            then return here and verify your task.
+        </div>
+
+        <button
+            class="open-btn"
+            id="igOpen"
+            onclick="openTask(3)">
+            ◎ FOLLOW ON INSTAGRAM
+        </button>
+
+        <button
+            class="verify-btn"
+            id="igVerify"
+            onclick="verifyTask(3)">
+            ✓ I'VE FOLLOWED
+        </button>
+
+        <div
+            class="timer"
+            id="timer3">
+            Please wait 10 seconds...
+        </div>
+
+        <div
+            class="done"
+            id="done3">
+            ✓ Instagram task completed
+        </div>
+
+    </div>
+
+
+    <!-- ================= FINAL ================= -->
+
+    <div
+        class="card final"
+        id="final">
+
+        <div class="task-number">
+            UNLOCK COMPLETE
+        </div>
+
+        <div class="task-title">
+            Your Download Is Ready
+        </div>
+
+        <div class="task-desc">
+            All tasks are completed.
+            You can now download the APK or unlock your key.
+        </div>
+
+
+        <!-- DOWNLOAD -->
+
+        <button
+            class="download-btn"
+            onclick="downloadAPK()">
+            ⬇ DOWNLOAD APK
+        </button>
+
+
+        <!-- KEY -->
+
+        <button
+            class="key-btn"
+            onclick="showKey()">
+            🔐 UNLOCK KEY
+        </button>
+
+
+        <!-- KEY BOX -->
+
+        <div
+            class="key-box"
+            id="keyBox">
+
+            <div class="key-label">
+                YOUR 24-HOUR KEY
+            </div>
+
+            <div
+                class="key"
+                id="keyText">
+                BLZ-14UAZM-B40J7M
+            </div>
+
+            <div class="valid">
+                Valid for 24 hours
+            </div>
+
+            <button
+                class="copy-btn"
+                onclick="copyKey()">
+                📋 COPY KEY
+            </button>
+
+            <div
+                class="copied"
+                id="copied">
+                ✓ Key copied
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 THE EAGLE⁰⁹ • All Rights Reserved
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   SOCIAL LINKS
+================================================== */
+
+const YOUTUBE_URL =
+"https://youtube.com/@the-eagle.09?si=QCMVS91T8vJkufUb";
+
+const TELEGRAM_URL =
+"https://t.me/TheEagle09inc";
+
+const INSTAGRAM_URL =
+"https://www.instagram.com/dileepsingh__rathore?stkn=b2NnMW5oZWNvMGhx";
+
+
+/* ==================================================
+   APK RELEASE LINK
+================================================== */
+
+const APK_RELEASE_URL =
+"https://github.com/TheEagle09-site/The-eagle09-Blitz-apk-download-/releases/download/V2.0.1/TheEagle._19.4.0-Speed-Improved-Fixed.apk";
+
+
+/* ==================================================
+   KEY
+================================================== */
+
+const UNLOCK_KEY =
+"BLZ-14UAZM-B40J7M";
+
+
+/* ==================================================
+   OPEN TASK
+================================================== */
+
+function openTask(task){
+
+    if(task === 1){
+
+        window.open(
+            YOUTUBE_URL,
+            "_blank"
+        );
+
+        document.getElementById(
+            "ytVerify"
+        ).style.display = "block";
+    }
+
+
+    if(task === 2){
+
+        window.open(
+            TELEGRAM_URL,
+            "_blank"
+        );
+
+        document.getElementById(
+            "tgVerify"
+        ).style.display = "block";
+    }
+
+
+    if(task === 3){
+
+        window.open(
+            INSTAGRAM_URL,
+            "_blank"
+        );
+
+        document.getElementById(
+            "igVerify"
+        ).style.display = "block";
+    }
+
+}
+
+
+/* ==================================================
+   VERIFY TASK
+================================================== */
+
+function verifyTask(task){
+
+    let verifyButton;
+
+    if(task === 1){
+        verifyButton =
+        document.getElementById("ytVerify");
+    }
+
+    if(task === 2){
+        verifyButton =
+        document.getElementById("tgVerify");
+    }
+
+    if(task === 3){
+        verifyButton =
+        document.getElementById("igVerify");
+    }
+
+
+    const timer =
+    document.getElementById(
+        "timer" + task
+    );
+
+
+    verifyButton.disabled = true;
+
+    verifyButton.style.opacity = ".5";
+
+    timer.style.display = "block";
+
+
+    let seconds = 10;
+
+    timer.innerText =
+        "Please wait " +
+        seconds +
+        " seconds...";
+
+
+    const interval =
+    setInterval(function(){
+
+        seconds--;
+
+        timer.innerText =
+            "Please wait " +
+            seconds +
+            " seconds...";
+
+
+        if(seconds <= 0){
+
+            clearInterval(interval);
+
+            timer.innerText =
+                "✓ Verified";
+
+
+            document.getElementById(
+                "done" + task
+            ).style.display = "block";
+
+
+            verifyButton.style.display =
+                "none";
+
+
+            completeTask(task);
+
+        }
+
+    },1000);
+
+}
+
+
+/* ==================================================
+   COMPLETE TASK
+================================================== */
+
+function completeTask(task){
+
+    updateProgress(task);
+
+
+    if(task === 1){
+
+        document.getElementById(
+            "task2"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "task2"
+        ).scrollIntoView({
+            behavior:"smooth"
+        });
+    }
+
+
+    if(task === 2){
+
+        document.getElementById(
+            "task3"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "task3"
+        ).scrollIntoView({
+            behavior:"smooth"
+        });
+    }
+
+
+    if(task === 3){
+
+        document.getElementById(
+            "final"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "final"
+        ).scrollIntoView({
+            behavior:"smooth"
+        });
+    }
+
+}
+
+
+/* ==================================================
+   PROGRESS BAR
+================================================== */
+
+function updateProgress(task){
+
+    const percent =
+        (task / 3) * 100;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percent + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
+        task + " / 3";
+
+}
+
+
+/* ==================================================
+   DOWNLOAD APK
+================================================== */
+
+function downloadAPK(){
+
+    window.location.href =
+        APK_RELEASE_URL;
+
+}
+
+
+/* ==================================================
+   SHOW / HIDE KEY
+================================================== */
+
+function showKey(){
+
+    const box =
+        document.getElementById(
+            "keyBox"
+        );
+
+
+    if(box.style.display === "block"){
+
+        box.style.display = "none";
+
+    }else{
+
+        box.style.display = "block";
+
+    }
+
+}
+
+
+/* ==================================================
+   COPY KEY
+================================================== */
+
+function copyKey(){
+
+    const copied =
+        document.getElementById(
+            "copied"
+        );
+
+
+    if(navigator.clipboard){
+
+        navigator.clipboard.writeText(
+            UNLOCK_KEY
+        ).then(function(){
+
+            copied.style.display =
+                "block";
+
+
+            setTimeout(function(){
+
+                copied.style.display =
+                    "none";
+
+            },2000);
+
+        });
+
+    }else{
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value =
+            UNLOCK_KEY;
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+
+        copied.style.display =
+            "block";
+
+
+        setTimeout(function(){
+
+            copied.style.display =
+                "none";
+
+        },2000);
+
+    }
+
+}
+
+</script>
+
+</body>
+  </html>
